@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  complete_word: MyString
+  audio_source: MyString
+  letter_pool: MyString
+
+two:
+  complete_word: MyString
+  audio_source: MyString
+  letter_pool: MyString

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  started: false
+  finished: false
+  type: 
+
+two:
+  started: false
+  finished: false
+  type: 
