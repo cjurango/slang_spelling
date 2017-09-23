@@ -7,22 +7,21 @@ gem 'rails-api'
 
 gem 'spring', :group => :development
 
+# Postgres support
+gem 'pg', '0.20'
 
-gem 'pg'
+# Serializer for JSON
+gem 'active_model_serializers'
 
-
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+group :development, :test do
+  gem 'ap'                              # MIT License
+  gem 'awesome_print', require: 'ap'    # MIT License
+  gem 'byebug'                          # MIT Licence
+  gem 'hirb'                            # MIT License
+  gem 'method_profiler', require: false # MIT License
+  gem 'rails-erd'                       # MIT License
+  gem 'rails_best_practices'            # MIT License
+  gem 'reek', '>= 3.7.1'                # MIT License
+  gem 'rubocop', '>= 0.35.1'            # MIT License
+  gem 'web-console'                     # MIT Licence
+end
