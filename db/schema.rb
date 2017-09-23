@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923010528) do
+ActiveRecord::Schema.define(version: 20170923022304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170923010528) do
     t.datetime "updated_at"
   end
 
-  create_table "exersices", force: :cascade do |t|
+  create_table "exercises", force: :cascade do |t|
     t.boolean  "started"
     t.boolean  "finished"
     t.string   "type",       default: "spelling"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20170923010528) do
     t.integer  "answer_id"
   end
 
-  add_index "exersices", ["answer_id"], name: "index_exersices_on_answer_id", using: :btree
-  add_index "exersices", ["word_id"], name: "index_exersices_on_word_id", using: :btree
+  add_index "exercises", ["answer_id"], name: "index_exercises_on_answer_id", using: :btree
+  add_index "exercises", ["word_id"], name: "index_exercises_on_word_id", using: :btree
 
   create_table "words", force: :cascade do |t|
     t.string   "complete_word"
@@ -44,6 +44,6 @@ ActiveRecord::Schema.define(version: 20170923010528) do
     t.datetime "updated_at"
   end
 
-  add_foreign_key "exersices", "answers"
-  add_foreign_key "exersices", "words"
+  add_foreign_key "exercises", "answers"
+  add_foreign_key "exercises", "words"
 end
