@@ -3,3 +3,7 @@ AllCops:
     - 'test/**/*'
     - 'config/**/*'
     - 'db/**/*'
+    - 'lib/*'
+
+MethodLength:
+  Enabled: false

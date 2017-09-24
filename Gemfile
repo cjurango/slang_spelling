@@ -12,6 +12,9 @@ gem 'pg', '0.20'
 # Serializer for JSON
 gem 'active_model_serializers'
 
+# MimeResponds module
+gem 'responders'
+
 group :development, :test do
   gem 'ap'                              # MIT License
   gem 'awesome_print', require: 'ap'    # MIT License

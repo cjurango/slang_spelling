@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923022304) do
+ActiveRecord::Schema.define(version: 20170923061007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20170923022304) do
   end
 
   create_table "exercises", force: :cascade do |t|
-    t.boolean  "started"
-    t.boolean  "finished"
-    t.string   "type",       default: "spelling"
+    t.boolean  "started",    default: false
+    t.boolean  "finished",   default: false
+    t.string   "category",   default: "spelling"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "word_id"

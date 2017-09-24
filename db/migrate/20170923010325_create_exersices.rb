@@ -3,7 +3,7 @@ class CreateExersices < ActiveRecord::Migration
     create_table :exersices do |t|
       t.boolean :started
       t.boolean :finished
-      t.string :type, :default => "spelling"
+      t.string :type, default: 'spelling'
 
       t.timestamps
     end
