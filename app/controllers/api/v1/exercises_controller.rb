@@ -3,6 +3,14 @@ class Api::V1::ExercisesController < ApplicationController
   before_action :fetch_exercise, only: %i[show update]
   respond_to :json
 
+  def progress
+    answers = Exercise.joins(:answer)
+    num_answers = answers.count
+    num_accurate_answers = answers.where('answers.accurate' => 'true').count
+    progress = (num_accurate_answers.to_f * 100) / num_answers.to_f
+    render json: { progress: progress.ceil }
+  end
+
   def show
     if @exercise
       render json: @exercise, include: %w[word answer],

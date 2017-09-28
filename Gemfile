@@ -16,7 +16,7 @@ gem 'active_model_serializers'
 gem 'responders'
 
 # CORS
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   gem 'ap'                              # MIT License
