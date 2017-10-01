@@ -18,6 +18,15 @@ gem 'responders'
 # CORS
 gem 'rack-cors', require: 'rack/cors'
 
+# Ruby
+ruby "2.3.3"
+
+# Platform features
+gem 'rails_12factor', group: :production
+
+# Puma server
+gem 'puma'
+
 group :development, :test do
   gem 'ap'                              # MIT License
   gem 'awesome_print', require: 'ap'    # MIT License
