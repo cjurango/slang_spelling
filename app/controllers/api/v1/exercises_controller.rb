@@ -7,7 +7,7 @@ class Api::V1::ExercisesController < ApplicationController
     answers = Exercise.joins(:answer)
     num_answers = answers.count
     num_accurate_answers = answers.where('answers.accurate' => 'true').count
-    progress = (num_accurate_answers.to_f * 100) / num_answers.to_f
+    progress = (num_accurate_answers.to_f * 100) / (num_answers.to_f.nonzero? || 1)
     render json: { progress: progress.ceil }
   end
 

@@ -1,0 +1,384 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Slang Spelling API",
+        "description": "APIs for the Slang Exercises application.",
+        "contact": {
+            "email": "cj.urango@gmail.com"
+        }
+    },
+    "basePath": "/api/v1/",
+    "produces": [
+        "application/json"
+    ],
+    "tags": [{
+            "name": "exercises",
+            "description": "Endpoints for consuming and publishing exercises and progress."
+        }
+    ],
+    "paths": {
+        "/exercises/{id}": {
+            "get": {
+                "tags": [
+                    "exercises"
+                ],
+                "operationId": "getExercise",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve an exercise from the system.",
+                "description": "Retrieve an exercise from the system passing the appropiate id.",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "The id of the exercise to get the exercise information.",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success exercise information",
+                        "schema": {
+                            "$ref": "#/definitions/exercise"
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid id error.",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/500"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "exercises"
+                ],
+                "operationId": "adminToolPut",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Updates an exercise in the system",
+                "description": "Updates an exercise in the system with the passed information.",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "The id of the exercise to get the exercise information.",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "body",
+                    "in": "body",
+                    "description": "Payload with all the required fields to update an exercise.",
+                    "required": false,
+                    "schema": {
+                        "type": "object",
+                        "title": "ExercisePutPayload",
+                        "properties": {
+                            "started": {
+                                "type": "boolean",
+                                "example": true,
+                                "description": "Whether or not the exercise is currently started."
+                            },
+                            "finished": {
+                                "type": "boolean",
+                                "example": false,
+                                "description": "Whether or not the exercise is currently finished."
+                            },
+                            "answer": {
+                                "title": "Answer",
+                                "type": "object",
+                                "description": "Answer information",
+                                "properties": {
+                                    "answer_word": {
+                                        "type": "string",
+                                        "description": "The answer word provided.",
+                                        "example": "taek"
+                                    },
+                                    "accurate": {
+                                        "type": "boolean",
+                                        "description": "Whether or not the answer provided is accurate.",
+                                        "example": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Exercise updated",
+                        "schema": {
+                            "$ref": "#/definitions/exercise"
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid id error.",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/500"
+                        }
+                    }
+                }
+            }
+        },
+        "/exercises": {
+            "post": {
+                "tags": [
+                    "exercises"
+                ],
+                "operationId": "postExercise",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Creates a new exercise in the system.",
+                "description": "Creates a new exercise associated to an specific consecutive word.",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": "Exercise created",
+                        "schema": {
+                            "$ref": "#/definitions/exerciseWithoutAnswer"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/500"
+                        }
+                    }
+                }
+            }
+        },
+        "/exercises/progress": {
+            "get": {
+                "tags": [
+                    "exercises"
+                ],
+                "operationId": "getProgress",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve the overall progress.",
+                "description": "Retrieve the overall percentage progress of the users from the system.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Overall progress percentage value",
+                        "schema": {
+                            "$ref": "#/definitions/progress"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "400": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "description": "Error message to display",
+                    "required": [
+                        "messageKey",
+                        "titleKey"
+                    ],
+                    "properties": {
+                        "messageKey": {
+                            "type": "string",
+                            "description": "Translation key for the body of the error message",
+                            "example": "error.bad.request.body"
+                        },
+                        "titleKey": {
+                            "type": "string",
+                            "description": "Translation key for the title of the error message",
+                            "example": "error.bad.request.title"
+                        }
+                    }
+                }
+            }
+        },
+        "404": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Not Found"
+                },
+                "status": {
+                    "type": "integer",
+                    "description": "Error http status",
+                    "example": "404"
+                }
+            }
+        },
+        "500": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal Error"
+                },
+                "status": {
+                    "type": "integer",
+                    "description": "Error http status",
+                    "example": "500"
+                }
+            }
+        },
+        "exercise": {
+            "type": "object",
+            "title": "Exercise",
+            "required": ["id", "started", "finished", "category", "word"],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "115",
+                    "description": "Id of the exercise."
+                },
+                "started": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not the exercise is currently started."
+                },
+                "finished": {
+                    "type": "boolean",
+                    "example": false,
+                    "description": "Whether or not the exercise is currently finished."
+                },
+                "category": {
+                    "type": "string",
+                    "example": "spelling",
+                    "description": "Category of the exercise"
+                },
+                "word": {
+                    "type": "object",
+                    "title": "Word",
+                    "required": ["id", "complete_word", "letter_pool"],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "example": "125",
+                            "description": "Id of the word."
+                        },
+                        "complete_word": {
+                            "type": "string",
+                            "example": "make",
+                            "description": "Complete word used in the exercise"
+                        },
+                        "letter_pool": {
+                            "type": "array",
+                            "description": "Array of letter for the word used in the exercise",
+                            "items": {
+                                "type": "string",
+                                "example": "m,a,k,e"
+                            }
+                        }
+                    }
+                },
+                "answer": {
+                    "type": "object",
+                    "title": "Answer",
+                    "required": ["id", "answer_word", "accurate"],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "example": "125",
+                            "description": "Id of the answer."
+                        },
+                        "answer_word": {
+                            "type": "string",
+                            "example": "maek",
+                            "description": "Answered word of the exercise"
+                        },
+                        "accurate": {
+                            "type": "boolean",
+                            "example": false,
+                            "description": "Whether or not the answer of the exercise is correct."
+                        }
+                    }
+                }
+            }
+        },
+        "exerciseWithoutAnswer": {
+            "type": "object",
+            "title": "Exercise",
+            "required": ["id", "started", "finished", "category", "word"],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "115",
+                    "description": "Id of the exercise."
+                },
+                "started": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not the exercise is currently started."
+                },
+                "finished": {
+                    "type": "boolean",
+                    "example": false,
+                    "description": "Whether or not the exercise is currently finished."
+                },
+                "category": {
+                    "type": "string",
+                    "example": "spelling",
+                    "description": "Category of the exercise"
+                },
+                "word": {
+                    "type": "object",
+                    "title": "Word",
+                    "required": ["id", "complete_word", "letter_pool"],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "example": "125",
+                            "description": "Id of the word."
+                        },
+                        "complete_word": {
+                            "type": "string",
+                            "example": "make",
+                            "description": "Complete word used in the exercise"
+                        },
+                        "letter_pool": {
+                            "type": "array",
+                            "description": "Array of letter for the word used in the exercise",
+                            "items": {
+                                "type": "string",
+                                "example": "m,a,k,e"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "progress": {
+            "type": "object",
+            "title": "Progress",
+            "required": ["progress"],
+            "properties": {
+                "progress": {
+                    "type": "integer",
+                    "example": "32",
+                    "description": "Overall users progress percentage."
+                }
+            }
+        }
+    }
+}

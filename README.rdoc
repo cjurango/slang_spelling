@@ -1,16 +1,17 @@
-== README
+= Slang-spelling is the Back End REST API for the Slang Spelling web application.
 
-Slang-spelling is the Back End REST API for the Slang Spelling web application.
-
-Built With
+== Built With
 
 * Ruby on Rails — The Back end API is a Rails app. It responds to REST requests in JSON format.
 * PostgreSQL — The database is PostgreSQL.
 * Plus some Ruby Gems (/master/Gemfile)
 
-This app also uses:
+== This app also uses
 * Words dictionary data taken from https://github.com/first20hours/google-10000-english
 
-Author
+== Documentation
+* https://swaggerhub.com/apis/cjumPersonal/slang_spelling/1.0.0
+
+== Author
 
 Carlos Urango <cj.urango@gmail.com>
