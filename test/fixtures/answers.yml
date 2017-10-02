@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  answer_word: MyString
-  accurate: false
+  id: 1
+  answer_word: test
+  accurate: true
 
 two:
-  answer_word: MyString
+  id: 2
+  answer_word: tets
   accurate: false

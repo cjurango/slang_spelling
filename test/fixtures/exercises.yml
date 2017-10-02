@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   started: false
   finished: false
-  type: 
+  category: spelling
 
 two:
+  id: 2
   started: false
   finished: false
-  type: 
+  category: spelling
