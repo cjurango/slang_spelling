@@ -19,13 +19,15 @@ gem 'responders'
 gem 'rack-cors', require: 'rack/cors'
 
 # Ruby
-ruby "2.3.3"
+ruby '2.3.3'
 
 # Platform features
 gem 'rails_12factor', group: :production
 
 # Puma server
 gem 'puma'
+
+gem 'web-console', group: :development  # MIT Licence
 
 group :development, :test do
   gem 'ap'                              # MIT License
@@ -37,5 +39,4 @@ group :development, :test do
   gem 'rails_best_practices'            # MIT License
   gem 'reek', '>= 3.7.1'                # MIT License
   gem 'rubocop', '>= 0.35.1'            # MIT License
-  gem 'web-console'                     # MIT Licence
 end
