@@ -1,7 +1,6 @@
-= Slang-spelling is the Back End REST API for the Slang Spelling web application.
+== Slang-spelling is the Back End REST API for the Slang Spelling web application
 
 == Built With
-
 * Ruby on Rails — The Back end API is a Rails app. It responds to REST requests in JSON format.
 * PostgreSQL — The database is PostgreSQL.
 * Plus some Ruby Gems (/master/Gemfile)
@@ -12,6 +11,8 @@
 == Documentation
 * https://swaggerhub.com/apis/cjumPersonal/slang_spelling/1.0.0
 
-== Author
+== Live API url
+* https://pure-spire-62269.herokuapp.com/api/v1/exercises
 
+== Author
 Carlos Urango <cj.urango@gmail.com>
